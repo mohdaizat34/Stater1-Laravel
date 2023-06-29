@@ -3,7 +3,7 @@
     <a href="index3.html" class="brand-link">
         <img src="{{ asset('template') }}/dist/img/AdminLTELogo.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3"
             style="opacity: .8">
-        <span class="brand-text font-weight-light">{{ config('app.name') }}</span>
+        <span class="brand-text font-weight-light">EMS</span>
     </a>
 
     <!-- Sidebar -->
@@ -37,15 +37,15 @@
                     <a href="#" class="nav-link {{ Route::is('exampleDataTable.*') ? 'active' : '' }} {{ Route::is('example.*') ? 'active' : '' }}">
                         <i class="nav-icon fas fa fa-paperclip"></i>
                         <p>
-                            Example Pages
+                            Events
                             <i class="right fas fa-angle-left"></i>
                         </p>
                     </a>
                     <ul class="nav nav-treeview">
                         <li class="nav-item">
-                            <a href="{{ route('example.index') }}" class="nav-link {{ Route::is('example.index') ? 'active' : '' }}">
+                            <a href="/event" class="nav-link {{ Route::is('event') ? 'active' : '' }}">
                                 <i class="far fa-circle nav-icon"></i>
-                                <p>Example Table</p>
+                                <p>Paperwork</p>
                             </a>
                         </li>
                     </ul>
@@ -53,7 +53,7 @@
                         <li class="nav-item">
                             <a href="{{ route('exampleDataTable.index') }}" class="nav-link {{ Route::is('exampleDataTable.index') ? 'active' : '' }}">
                                 <i class="far fa-circle nav-icon"></i>
-                                <p>Example DataTable</p>
+                                <p>Status Approval</p>
                             </a>
                         </li>
                     </ul>

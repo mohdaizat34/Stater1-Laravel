@@ -15,7 +15,7 @@
             <h5 class="m-0">Dashboard</h5>
         </div>
         <div class="card-body">
-            <h6 class="card-title">Welcome to this beautiful admin panel.</h6>
+            <h6 class="card-title">You have logged in!.</h6>
 
             <p class="card-text">
                 This starter page is great for starting your new project from

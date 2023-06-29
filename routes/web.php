@@ -1,5 +1,6 @@
 <?php
-
+use App\Http\Controllers\EventController;
+use App\Http\Controllers\FormController;
 use App\Http\Controllers\ExampleController;
 use App\Http\Controllers\ExampleDataTableControler;
 use App\Http\Controllers\HomeController;
@@ -16,6 +17,17 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
+
+//Events -----------------------------------------------
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+Route::get('/event', [App\Http\Controllers\EventController::class, 'event']);
+Route::get('/form', [App\Http\Controllers\FormController::class, 'form']);
+Route::get('/paperwork', [App\Http\Controllers\FormController::class, 'view_paperwork']);
+//Route::get('/paperwork{id}', [App\Http\Controllers\FormController::class, 'view_paperwork']);
+
+Route::post('/event', [EventController::class, 'postevent'])->name('submitevent');
+//--------------------------------------------------------
 
 Route::get('/', function () {
     return view('welcome');

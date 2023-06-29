@@ -10,11 +10,11 @@ class ExampleController extends Controller
 {
     public function __construct()
     {
-        $this->middleware('auth');
-        $this->middleware('role:admin|user');
+        //$this->middleware('auth');
+       // $this->middleware('role:admin|user');
     }
 
-    public function index()
+    public function index() 
     {
         $examples = Example::get();
         return view('example.index', compact('examples'));
