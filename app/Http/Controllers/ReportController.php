@@ -1,0 +1,30 @@
+<?php
+
+namespace App\Http\Controllers;
+
+use Illuminate\Http\Request;
+use App\Models\Event;
+use Dompdf\Dompdf;
+
+
+class ReportController extends Controller
+{
+   public function report() {
+      $report = Event::all();
+      return view('report', compact('report'));
+   }
+
+   public function postevent(Request $req) {
+      $event = new Event();
+      $event->event_name = $req->name;
+      $event->event_director = $req->director;
+      $event->event_venue = $req->venue;
+      $event->event_desc = $req->desc;
+      $event->event_date = $req->date;
+      $event->event_status = $req->status;
+      $event->save();
+      return redirect('report');
+   }
+
+  
+}

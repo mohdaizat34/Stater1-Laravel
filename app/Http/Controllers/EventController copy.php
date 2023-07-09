@@ -22,7 +22,6 @@ class EventController extends Controller
         $event->event_venue = $req->venue;
         $event->event_desc = $req->desc;
         $event->event_date = $req->date;
-        $event->event_link = $req->link;
         $event->event_status = $req->status;
         $event->save();
         return redirect('event');
@@ -33,7 +32,7 @@ class EventController extends Controller
       $event->event_status = $req->input('status');
       $event->event_remark = $req->input('remark');
       $event->update(); 
-      return redirect('statusapproval'); 
+      return redirect('event'); 
    }
 
    public function update_event(Request $req , $id) {
@@ -57,20 +56,4 @@ class EventController extends Controller
       $event = Event::find($id);
       return view('edit', compact('event'));
    }
-
-   public function edit_report_link(Request $req , $id) {
-      $event = Event::find($id);
-      return view('reportedit', compact('event'));
-   }
-
-   public function update_report_link(Request $req , $id) {
-      $event = Event::find($id);
-      $event->event_post_link = $req->input('post_link');
-      $event->update(); 
-      return redirect('report'); 
-   }
-
-   
-
-   
 }

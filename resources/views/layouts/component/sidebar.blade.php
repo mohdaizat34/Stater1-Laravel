@@ -37,23 +37,71 @@
                     <a href="#" class="nav-link {{ Route::is('exampleDataTable.*') ? 'active' : '' }} {{ Route::is('example.*') ? 'active' : '' }}">
                         <i class="nav-icon fas fa fa-paperclip"></i>
                         <p>
+                            Pre-Events
+                            <i class="right fas fa-angle-left"></i>
+                        </p>
+                    </a>
+                    <ul class="nav nav-treeview">
+                        <li class="nav-item">
+                            <a href= '/event' class="nav-link {{ Route::is('event') ?  : '' }}">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>Paperworks</p>  
+                            </a>
+                        </li>
+                    </ul>
+
+                   @if (auth()->user()->role == "hepa" ||  auth()->user()->role == "admin")
+                        <ul class="nav nav-treeview">
+                            <li class="nav-item">
+                                <a href='/statusapproval' class="nav-link {{ Route::is('statusapproval') ? 'active' : '' }}">
+                                    <i class="far fa-circle nav-icon"></i>
+                                    <p>Status Approval</p>
+                                </a>
+                            </li>
+                        </ul>
+                    @endif 
+
+                   <!-- <ul class="nav nav-treeview">
+                        <li class="nav-item">
+                            <a href= '/checklist' class="nav-link {{ Route::is('event') ? 'active' : '' }}">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>Checklist</p>
+                            </a>
+                        </li>
+                    </ul> --> 
+                </li>
+
+                <li class="nav-item {{ Route::is('example.*') ? 'menu-open' : '' }}">
+                    <a href="#" class="nav-link {{ Route::is('exampleDataTable.*') ? 'active' : '' }} {{ Route::is('example.*') ? 'active' : '' }}">
+                        <i class="nav-icon fas fa fa-paperclip"></i>
+                        <p>
                             Events
                             <i class="right fas fa-angle-left"></i>
                         </p>
                     </a>
                     <ul class="nav nav-treeview">
                         <li class="nav-item">
-                            <a href="/event" class="nav-link {{ Route::is('event') ? 'active' : '' }}">
+                            <a href= '/picreport' class="nav-link {{ Route::is('event') ? 'active' : '' }}">
                                 <i class="far fa-circle nav-icon"></i>
-                                <p>Paperwork</p>
+                                <p>Pictorial Report</p>  
                             </a>
                         </li>
                     </ul>
+                </li>
+
+                <li class="nav-item {{ Route::is('example.*') ? 'menu-open' : '' }}">
+                    <a href="#" class="nav-link {{ Route::is('exampleDataTable.*') ? 'active' : '' }} {{ Route::is('example.*') ? 'active' : '' }}">
+                        <i class="nav-icon fas fa fa-paperclip"></i>
+                        <p>
+                            Post-Events
+                            <i class="right fas fa-angle-left"></i>
+                        </p>
+                    </a>
                     <ul class="nav nav-treeview">
                         <li class="nav-item">
-                            <a href="{{ route('exampleDataTable.index') }}" class="nav-link {{ Route::is('exampleDataTable.index') ? 'active' : '' }}">
+                            <a href= '/report' class="nav-link {{ Route::is('event') ? 'active' : '' }}">
                                 <i class="far fa-circle nav-icon"></i>
-                                <p>Status Approval</p>
+                                <p>Report</p>  
                             </a>
                         </li>
                     </ul>

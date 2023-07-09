@@ -19,68 +19,44 @@
 
                 <div class="card-body">
                     <table class="table">
-
-                        @if  (auth()->user()->role == "admin")
-                            <a href = "/form"> <button class = "btn btn-success"> Add New Event </button> </a> <br><br> 
-                        @endif 
-
                         <thead class="thead-dark">
-                            <tr >
+                            <tr>
                                 <th scope="col">No</th>
                                 <th scope="col">Event Name</th>
                                 <th scope="col">Director</th>
+                                <th scope="col">Pictorial Report Link</th>
                                 <th scope="col" hidden>Date</th>
                                 <th scope="col" hidden>Venue</th>
                                 <th scope="col" hidden>desc</th>
-                                <th scope="col" >Action</th>
+                                <th scope="col" width="24%">Action</th>
                             </tr>
                         </thead> 
                         <tbody>
-                            @foreach ($event as $event)
+                            @foreach ($picreport as $picreport)
                                 <tr>
                                     {{-- <th scope="row">{{ $loop->iteration }}</th> --}}
-                                    <td >{{ $event->event_id }}</td>
-                                    <td >{{ $event->event_name }}</td>
-                                    <td >{{ $event->event_director }}</td>
-                                    <td hidden>{{ $event->event_venue }}</td>
-                                    <td hidden>{{ $event->event_date }}</td>
-                                    <td hidden>{{ $event->event_desc }}</td>
-                                    
-                                    @if  (auth()->user()->role == "admin")
-                                        <td >
-                                            <div class="btn-group" >
-                                                <button class="view_button btn btn-primary btn-sm" id="view_button" style="margin-right:10px;" >View </button> 
-                                                <a href="{{ url('edit_event/'.$event->event_id) }}"> <button class="btn btn-secondary btn-sm" style="margin-right:10px;"> Edit </button> </a>  
-                                                <!-- Delete -->                           
-                                                <form method="post" action="event_destroy{{ $event->event_id }}">
-                                                    @csrf
-                                                    <button type="submit" class="btn btn-danger btn-sm" style="margin-right:10px;">Delete</button>
-                                                </form>
-
-                                                <form action="https://formsubmit.co/bododona@mailgolem.com" method="POST" >
-                                                    <input type="text" class="form-control" name="notice" value="You have new paperwork to approve!" hidden>
-                                                    <input type="text" class="form-control" name="id" value={{ $event->event_id }} hidden>
-                                                    <input type="text" class="form-control" name="name" value={{ $event->event_name }} hidden>
-                                                    <input type="text" class="form-control" name="venue" value={{ $event->event_venue }} hidden>
-                                                    <input type="text" class="form-control" name="date" value= {{ $event->event_date }} hidden>
-                                                  
-                                                    <a href="/event"><button type="submit" class="btn btn-success btn-sm" style="margin-right:10px;" id="notifybtn" onclick="alertnotification()"> Notify  </button> </a> 
-                                                </form> 
-                                            </div> 
-                                        </td>
-                                    @elseif (auth()->user()->role == "hepa")
-                                        <td >
-                                            <div class="btn-group" >
-                                                <button class="view_button btn btn-primary btn-sm" id="view_button" style="margin-right:10px;" >View </button>                                
-                                            </div> 
-                                        </td>
+                                    <td >{{ $picreport->event_id }}</td>
+                                    <td >{{ $picreport->event_name }}</td>
+                                    <td >{{ $picreport->event_director }}</td>
+                                    @if ( $picreport->event_link == "") 
+                                        <td> No link </td>
                                     @else 
-                                        <td >
-                                            <div class="btn-group" >
-                                                <button class="view_button btn btn-primary btn-sm" id="view_button" style="margin-right:10px;" >View </button>                                
-                                            </div> 
-                                        </td>
+                                        <td><a href={{ $picreport->event_link }}>Link</td>
                                     @endif 
+                                    
+                                    <td hidden>{{ $picreport->event_venue }}</td>
+                                    <td hidden>{{ $picreport->event_date }}</td>
+                                    <td hidden>{{ $picreport->event_desc }}</td>
+                                    <td>
+                                        <div class="btn-group">
+                                            <button class="view_button btn btn-primary btn-sm" id="view_button" style="margin-right:10px;" >View</button>
+                                                @if  (auth()->user()->role == "admin")
+                                                    <a href = {{ url('edit_link/'.$picreport->event_id) }}> <button class="btn btn-secondary btn-sm" style="margin-right:10px;"> Edit Link </button>
+                                                @endif
+                                        </div>         
+                                        
+                                    </td>
+
                                 </tr>
         
                              @endforeach
@@ -117,6 +93,9 @@
 
                                         <label class = "labeldate">Event Description: &nbsp;</label> <br> 
                                         <a id = "labeldesc">  &nbsp; </a> <br><br> 
+
+                                        <label class = "labeldate">Event Pictorial Report Link: &nbsp;</label> <br> 
+                                        <a id = "labellink">  &nbsp; </a> <br><br> 
 
                 
 
@@ -157,10 +136,6 @@
 
 <script>
 
-    function alertnotification() {
-    alert("Advisor/HEPA has been notified in email");
-    }
-
     $('.view_button').on('click', function(){
         
         $('#viewcomp').modal('show');
@@ -177,6 +152,7 @@
         document.getElementById("labelvenue").innerHTML = data[3];
         document.getElementById("labeldate").innerHTML = data[4];
         document.getElementById("labeldesc").innerHTML = data[5];
+        document.getElementById("labellink").innerHTML = data[6];
 
         //document.getElementById("labelvenue").innerHTML = data[4];
     });

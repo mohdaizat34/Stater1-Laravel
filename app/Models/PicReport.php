@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Event extends Model
+class PicReport extends Model
 {
     use HasFactory;
 
@@ -25,7 +25,6 @@ class Event extends Model
         'event_date', 
         'event_link',
         'event_status', 
-        
     ];
 
     protected $primaryKey = 'event_id';

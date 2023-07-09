@@ -24,6 +24,7 @@ class FormController extends Controller
       $event->event_date = $req->date;
       $event->event_type = $req->type;
       $event->event_status = $req->status;
+      $event->event_link = $req->link;
       $event->save();
       return redirect('event');
     }
